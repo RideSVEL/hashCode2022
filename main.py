@@ -9,6 +9,10 @@ with open(fname) as f:
         print(line)
 
 
+# Algo
+
+
+
 # Partie Ecriture Sortie
 output = ['1', 2]
 fichier = open("output/" + filename, "w+")

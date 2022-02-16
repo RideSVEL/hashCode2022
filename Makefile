@@ -14,3 +14,6 @@ run-d:
 	python3 main.py input/${FILE_D}
 run-e:
 	python3 main.py input/${FILE_E}
+
+zip:
+	zip -r sources.zip *.py utils
