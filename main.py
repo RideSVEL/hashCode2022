@@ -39,7 +39,7 @@ for i in range(nb_projects):
         role_skill, required_level = lines[line_index+j].split(" ")
         roles[role_skill] = int(required_level.strip())
     line_index += int(nb_roles)
-    project = Project(project_name, score, nb_days, best_before, int(nb_roles), roles)
+    project = Project(project_name, int(nb_days), int(score), int(best_before), int(nb_roles), roles)
     print(project)
     projects.append(project)
 
@@ -76,6 +76,10 @@ while len(todo_projects) or len(working_projects):
                 working_projects[end_day] = []
             working_projects[end_day].append(proj)
             started_projects.append(proj)
+
+    # On ne peut plus faire de nouveaux projets
+    if not len(working_projects) and not len(started_projects):
+        break
 
     todo_projects = [project for project in todo_projects if project not in started_projects]
     day += 1

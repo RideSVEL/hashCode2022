@@ -1,6 +1,6 @@
 class Project:
 
-    def __init__(self, name, score, nbOfDaysToComplete, bestBeforeDay, nbOfRoles, roles):
+    def __init__(self, name, nbOfDaysToComplete, score, bestBeforeDay, nbOfRoles, roles):
         self.name = name
         self.nbOfDaysToComplete = int(nbOfDaysToComplete)
         self.score = int(score)
@@ -10,8 +10,9 @@ class Project:
         self.projectDone = False
         self.squad = []
 
-    def team_can_do(self, contributors):
+    def team_can_do(self, all_contributors):
         workers = []
+        contributors = all_contributors[:]
         # Chercher pour chaque skill si quelqu'un existe
         for skill in self.roles:
             for contributor in contributors:
