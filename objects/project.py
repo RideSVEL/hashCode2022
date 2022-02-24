@@ -8,6 +8,22 @@ class Project:
         self.nbOfRoles = int(nbOfRoles)
         self.roles = roles
         self.projectDone = False
+        self.squad = []
+
+    def team_can_do(self, contributors):
+        workers = []
+        # Chercher pour chaque skill si quelqu'un existe
+        for skill in self.roles:
+            for contributor in contributors:
+                if skill in contributor.skills and contributor.skills[skill] >= self.roles[skill]:
+                    workers.append(contributor)
+                    print (contributor.name + " can do " + skill + " level " + str(self.roles[skill]))
+                    contributors.remove(contributor)
+                    continue
+        if len(workers) == len(self.roles):
+            return workers
+        return []
+
 
     def __str__(self) -> str:
         return self.name + ' -days: ' + str(self.nbOfDaysToComplete) + ' - score: ' + str(self.score) + ' - bestBeforeDay:' + str(self.bestBeforeDay) + ' - nbRoles:' + str(self.nbOfRoles) + ' - done:' + str(self.projectDone) + ' - roles:' + str(self.roles.items())
