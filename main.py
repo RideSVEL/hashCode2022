@@ -33,10 +33,10 @@ for i in range(nb_contributors):
 for i in range(nb_projects):
     project_name, nb_days, score, best_before, nb_roles = lines[line_index].split(" ")
     line_index += 1
-    roles = {}
+    roles = []
     for j in range(int(nb_roles)):
         role_skill, required_level = lines[line_index+j].split(" ")
-        roles[role_skill] = int(required_level.strip())
+        roles.append([role_skill, int(required_level.strip())])
     line_index += int(nb_roles)
     project = Project(project_name, int(nb_days), int(score), int(best_before), int(nb_roles), roles)
     projects.append(project)

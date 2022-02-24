@@ -14,10 +14,10 @@ class Project:
         workers = []
         contributors = all_contributors[:]
         # Chercher pour chaque skill si quelqu'un existe
-        for skill in self.roles:
+        for skill, value in self.roles:
             matched_skill = False
             for contributor in contributors:
-                if skill in contributor.skills and contributor.skills[skill] >= self.roles[skill]:
+                if skill in contributor.skills and contributor.skills[skill] >= value:
                     workers.append(contributor)
                     # print (contributor.name + " can do " + skill + " level " + str(self.roles[skill]))
                     contributors.remove(contributor)
@@ -26,15 +26,18 @@ class Project:
                 if matched_skill:
                     break
 
+
         if len(workers) == len(self.roles):
+            if self.name == 'CollectionsNextv1':
+                print(self.roles)
+                print(workers)
             self.squad = workers
             self.squad_names = list(map(lambda x: x.name, workers))
             return workers
         return []
 
     def end(self):
-        roles_list = list(self.roles)
         for i in range(len(self.squad)):
             member = self.squad[i]
-            skill = roles_list[i]
-            member.learning(skill, self.roles[skill])
+            skill, value = self.roles[i]
+            member.learning(skill, value)
