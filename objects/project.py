@@ -10,6 +10,12 @@ class Project:
         self.projectDone = False
         self.squad = []
 
+    def possible_score(self, current_day):
+        if self.bestBeforeDay >= current_day + self.nbOfDaysToComplete:
+            return self.score
+        else:
+            return max([0, self.score - (current_day + self.nbOfDaysToComplete) + self.bestBeforeDay])
+
     def team_can_do(self, all_contributors):
         workers = []
         contributors = all_contributors[:]

@@ -52,9 +52,13 @@ terminated_projects = []
 
 day = 0
 
-
+todo_projects.sort(key=lambda x: x.possible_score(day), reverse=True)
 while len(todo_projects) or len(working_projects):
     project_to_end = working_projects.get(day)
+
+    # todo_projects.sort(key=lambda x: x.possible_score(day), reverse=True)
+    todo_projects = list(filter(lambda x: x.possible_score(day) > 0, todo_projects))
+
     if project_to_end:
         for proj in project_to_end:
             proj.end()
