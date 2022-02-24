@@ -30,8 +30,8 @@ for clientalgo1 in clients:
 
 # for clientalgo1 in clients:
 #     if clientalgo1.hasdislikedingredient():
-#   BESOIN D AIDE ICI POUR FAIRE LE CODE        if not ingredientsOuput.contains(clientalgo1.dislikedIngredients)
-#               ingredientsOutput|= set(clientalgo1.likedIngredients)
+#         if not clientalgo1.dislikedIngredients.issubset(ingredientsOutput):
+#             ingredientsOutput |= set(clientalgo1.likedIngredients)
 
 # Algo 2 : on satisfait les clients dans l'ordre de lecture du fichier
 # Algo 3 : on satisfait les clients dans l'ordre inverse de lecture du fichier
@@ -40,6 +40,14 @@ for clientalgo1 in clients:
 #               => puis on garde les autres clients qui satisfont les ingrédients choisis
 # Algo 5 : on groupe ceux qui n'aiment pas la même chose
 #               => on vire ou on garde le groupe contenant le plus grand nombre de clients
+
+# Algo 6: par défaut on ajoute tous les ingrédients (imagine la pizza degueu)
+#             on trouve l'élement le moins aimé (en comptant le nombre de dislikes - le nombre de likes) et on l'enleve
+#             => on enleve les clients qui aimaient l'ingrédient
+#             => et on boucle jusqu'a ne plus avoir de dislikes ?
+
+
+
 
 # Partie Ecriture Sortie
 fichier = open("output/" + filename, "w+")
