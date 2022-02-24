@@ -1,6 +1,7 @@
 import sys
 
 from objects.contributor import Contributor
+from objects.project import Project
 
 fname = sys.argv[1]
 filename = fname.split("input/")[1]
@@ -16,6 +17,7 @@ nb_projects = int(line_0[1])
 #print(nb_contributors)
 #print(nb_projects)
 contributors = []
+projects = []
 
 line_index = 1
 for i in range(nb_contributors):
@@ -33,17 +35,15 @@ for i in range(nb_contributors):
 
 for i in range(nb_projects):
     project_name, nb_days, score, best_before, nb_roles = lines[line_index].split(" ")
-    print("project", project_name)
-    print("nb_days", nb_days)
-    print("score", score)
-    print("best_before", best_before)
-    print("nb_roles", int(nb_roles))
     line_index += 1
+    roles = {}
     for j in range(int(nb_roles)):
         role_skill, required_level = lines[line_index+j].split(" ")
-        print(role_skill)
-        print(int(required_level))
+        roles[role_skill] = int(required_level.strip())
     line_index += int(nb_roles)
+    project = Project(project_name, score, nb_days, best_before, int(nb_roles), roles)
+    print(project)
+    projects.append(project)
 
 
 # Partie Ecriture Sortie
