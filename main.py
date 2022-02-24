@@ -26,6 +26,22 @@ for i in range(nb_contributors):
         print(int(level))
     line_index += int(nb_skills)
 
+
+for i in range(nb_projects):
+    project_name, nb_days, score, best_before, nb_roles = lines[line_index].split(" ")
+    print("project", project_name)
+    print("nb_days", nb_days)
+    print("score", score)
+    print("best_before", best_before)
+    print("nb_roles", int(nb_roles))
+    line_index += 1
+    for j in range(int(nb_roles)):
+        role_skill, required_level = lines[line_index+j].split(" ")
+        print(role_skill)
+        print(int(required_level))
+    line_index += int(nb_roles)
+
+
 # Partie Ecriture Sortie
 fichier = open("output/" + filename, "w+")
 for ingredient in range(10):
