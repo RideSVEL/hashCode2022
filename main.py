@@ -27,7 +27,6 @@ for i in range(nb_contributors):
         skills[skill] = int(level.strip())
     line_index += int(nb_skills)
     contributor = Contributor(name, skills)
-    print(contributor)
     contributors.append(contributor)
 
 
@@ -40,7 +39,6 @@ for i in range(nb_projects):
         roles[role_skill] = int(required_level.strip())
     line_index += int(nb_roles)
     project = Project(project_name, int(nb_days), int(score), int(best_before), int(nb_roles), roles)
-    print(project)
     projects.append(project)
 
 

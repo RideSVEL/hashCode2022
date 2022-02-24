@@ -15,12 +15,16 @@ class Project:
         contributors = all_contributors[:]
         # Chercher pour chaque skill si quelqu'un existe
         for skill in self.roles:
+            matched_skill = False
             for contributor in contributors:
                 if skill in contributor.skills and contributor.skills[skill] >= self.roles[skill]:
                     workers.append(contributor)
-                    print (contributor.name + " can do " + skill + " level " + str(self.roles[skill]))
+                    # print (contributor.name + " can do " + skill + " level " + str(self.roles[skill]))
                     contributors.remove(contributor)
-                    continue
+                    matched_skill = True
+                    break
+                if matched_skill:
+                    break
 
         if len(workers) == len(self.roles):
             self.squad = workers
@@ -33,5 +37,4 @@ class Project:
         for i in range(len(self.squad)):
             member = self.squad[i]
             skill = roles_list[i]
-            print(skill)
             member.learning(skill, self.roles[skill])
