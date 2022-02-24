@@ -10,11 +10,19 @@ class Project:
         self.projectDone = False
         self.squad = []
 
-    def __str__(self) -> str:
-        return self.name + ' -days: ' + str(self.nbOfDaysToComplete) + ' - score: ' + str(self.score) + ' - bestBeforeDay:' + str(self.bestBeforeDay) + ' - nbRoles:' + str(self.nbOfRoles) + ' - done:' + str(self.projectDone) + ' - roles:' + str(self.roles.items())
-
-
     def team_can_do(self, contributors):
-        self.squad = contributors
-        self.squad_names = list(map(lambda x: x.name, contributors))
-        return contributors
+        workers = []
+        # Chercher pour chaque skill si quelqu'un existe
+        for skill in self.roles:
+            for contributor in contributors:
+                if skill in contributor.skills and contributor.skills[skill] >= self.roles[skill]:
+                    workers.append(contributor)
+                    print (contributor.name + " can do " + skill + " level " + str(self.roles[skill]))
+                    contributors.remove(contributor)
+                    continue
+
+        if len(workers) == len(self.roles):
+            self.squad = workers
+            self.squad_names = list(map(lambda x: x.name, workers))
+            return workers
+        return []
