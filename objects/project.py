@@ -8,6 +8,13 @@ class Project:
         self.nbOfRoles = int(nbOfRoles)
         self.roles = roles
         self.projectDone = False
+        self.squad = []
 
     def __str__(self) -> str:
         return self.name + ' -days: ' + str(self.nbOfDaysToComplete) + ' - score: ' + str(self.score) + ' - bestBeforeDay:' + str(self.bestBeforeDay) + ' - nbRoles:' + str(self.nbOfRoles) + ' - done:' + str(self.projectDone) + ' - roles:' + str(self.roles.items())
+
+
+    def team_can_do(self, contributors):
+        self.squad = contributors
+        self.squad_names = list(map(lambda x: x.name, contributors))
+        return contributors
