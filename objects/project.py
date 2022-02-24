@@ -27,3 +27,11 @@ class Project:
             self.squad_names = list(map(lambda x: x.name, workers))
             return workers
         return []
+
+    def end(self):
+        roles_list = list(self.roles)
+        for i in range(len(self.squad)):
+            member = self.squad[i]
+            skill = roles_list[i]
+            print(skill)
+            member.learning(skill, self.roles[skill])

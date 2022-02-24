@@ -59,6 +59,7 @@ while len(todo_projects) or len(working_projects):
     project_to_end = working_projects.get(day)
     if project_to_end:
         for proj in project_to_end:
+            proj.end()
             free_contributors += proj.squad
             terminated_projects.append(proj)
 
