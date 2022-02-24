@@ -5,4 +5,6 @@ class Contributor:
         self.skills = skills
 
     def __str__(self) -> str:
-        print self.skills[0]
+        print(self.name)
+        print(self.skills.items())
+        return ''

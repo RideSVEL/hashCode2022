@@ -1,5 +1,7 @@
 import sys
 
+from objects.contributor import Contributor
+
 fname = sys.argv[1]
 filename = fname.split("input/")[1]
 
@@ -11,20 +13,22 @@ line_0 = lines[0].split(" ")
 nb_contributors = int(line_0[0])
 nb_projects = int(line_0[1])
 
-print(nb_contributors)
-print(nb_projects)
-
+#print(nb_contributors)
+#print(nb_projects)
+contributors = []
 
 line_index = 1
 for i in range(nb_contributors):
     name, nb_skills = lines[line_index].split(" ")
-    print(name)
     line_index += 1
+    skills = {}
     for j in range(int(nb_skills)):
         skill, level = lines[line_index+j].split(" ")
-        print(skill)
-        print(int(level))
+        skills[skill] = int(level.strip())
     line_index += int(nb_skills)
+    contributor = Contributor(name, skills)
+    print(contributor)
+    contributors.append(contributor)
 
 
 for i in range(nb_projects):
